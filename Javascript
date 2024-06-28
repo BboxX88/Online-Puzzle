@@ -1,0 +1,20 @@
+let selectedDisk = null;
+
+document.querySelectorAll('.tower').forEach(tower => {
+    tower.addEventListener('click', function () {
+        if (selectedDisk) {
+            const topDisk = this.querySelector('.disk:last-child');
+            if (!topDisk || parseInt(topDisk.dataset.size) > parseInt(selectedDisk.dataset.size)) {
+                this.appendChild(selectedDisk);
+                selectedDisk = null;
+            } else {
+                alert('Cannot place larger disk on smaller one!');
+            }
+        } else {
+            selectedDisk = this.querySelector('.disk:last-child');
+            if (selectedDisk) {
+                selectedDisk.remove();
+            }
+        }
+    });
+});
